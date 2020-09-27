@@ -1,6 +1,6 @@
 NAME      = minishell
 CC        = clang
-SRCS      = minishell.c
+SRCS      = minishell.c get_next_line.c
 OBJS     := $(SRCS:.c=.o)
 HEADER    = minishell.h
 CFLAGS    = -Werror -Wextra -Wall
