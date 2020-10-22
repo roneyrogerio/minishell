@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 00:36:04 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/10/21 20:12:48 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/10/22 18:16:54 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	lx_cachejoin(char *value)
 		ptr = g_lx.cache;
 		if ((g_lx.cache = ft_strjoin(g_lx.cache, value)) == NULL)
 			g_errno = SH_MEMERR;
+		free(value);
 		free(ptr);
 	}
 }
