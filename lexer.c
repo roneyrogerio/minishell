@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:50:03 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/10/22 09:08:24 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/10/22 18:17:41 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ t_token	*lexer(char *line)
 {
 	t_token	*token;
 
-	g_lx.line = line;
 	while (line && line[g_lx.i])
 	{
 		if (lx_isspecial())

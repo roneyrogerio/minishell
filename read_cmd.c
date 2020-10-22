@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 19:08:37 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/10/22 17:29:37 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/10/22 18:02:51 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 int	read_cmd(void)
 {
-	char	*line;
 	int		multiline;
 	char	*ptr;
 
@@ -25,14 +24,14 @@ int	read_cmd(void)
 	while (multiline)
 	{
 		g_lx.i = 0;
-		get_next_line(0, &line);
-		ptr = line;
-		if ((line = ft_strjoin(line, "\n")) == NULL)
+		get_next_line(0, &g_lx.line);
+		ptr = g_lx.line;
+		if ((g_lx.line = ft_strjoin(g_lx.line, "\n")) == NULL)
 			g_errno = SH_MEMERR;
 		free(ptr);
-		if ((multiline = parser(line)) == -1 || !syntax())
+		if ((multiline = parser(g_lx.line)) == -1 || !syntax())
 			return (-1);
-		free(line);
+		free(g_lx.line);
 		g_lx.line = NULL;
 		if (multiline)
 			ft_putstr_fd("> ", 1);
