@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/27 09:09:46 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/10/22 09:07:28 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/10/22 16:15:58 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ int		parser(char *line);
 void	sh_error(void);
 char	*sh_strerror(int errnum);
 void	sh_free(void);
+void	tokens_print(void);
+char	*token_name(int name);
 
 /*
 ** SH errors
