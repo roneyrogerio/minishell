@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 19:08:37 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/10/22 09:05:50 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/10/22 17:29:37 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	read_cmd(void)
 		if ((line = ft_strjoin(line, "\n")) == NULL)
 			g_errno = SH_MEMERR;
 		free(ptr);
-		if ((multiline = parser(line)) == -1)
+		if ((multiline = parser(line)) == -1 || !syntax())
 			return (-1);
 		free(line);
 		g_lx.line = NULL;
@@ -60,5 +60,23 @@ int	parser(char *line)
 			(last->prev && last->prev->name != NEWLINE)) ||
 			(!last->prev)))
 		return (0);
+	return (1);
+}
+
+int	syntax(void)
+{
+	t_token	*token;
+
+	token = g_tokens;
+	while (token)
+	{
+		if ((token->name == SEMI || token->name == PIPE) &&
+				(!token->prev || token->prev->name != LITERAL))
+		{
+			g_errno = SH_SYNERR;
+			return (0);
+		}
+		token = token->next;
+	}
 	return (1);
 }

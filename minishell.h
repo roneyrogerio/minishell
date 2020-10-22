@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/27 09:09:46 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/10/22 16:15:58 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/10/22 17:27:59 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 int		g_errno;
 int		read_cmd(void);
 int		parser(char *line);
+int		syntax(void);
 void	sh_error(void);
 char	*sh_strerror(int errnum);
 void	sh_free(void);
