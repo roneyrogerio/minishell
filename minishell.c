@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 08:18:06 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/09/26 08:23:16 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/10/21 21:37:33 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 
 int	main(void)
 {
-	write(1, "teste\n", 6);
+	while (1)
+	{
+		if (g_errno != 0)
+			sh_error();
+		if (read_cmd() == -1)
+			continue ;
+		sh_free();
+	}
 	return (0);
 }

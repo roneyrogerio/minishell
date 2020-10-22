@@ -1,9 +1,17 @@
 NAME      = minishell
 CC        = clang
-SRCS      = minishell.c get_next_line.c
+SRCS      = minishell.c \
+			get_next_line.c \
+			sh_error.c \
+			read_cmd.c \
+			lexer.c \
+			lexer_utils.c \
+			tokens.c \
+			sh_free.c
+
 OBJS     := $(SRCS:.c=.o)
 HEADER    = minishell.h
-CFLAGS    = -Werror -Wextra -Wall
+CFLAGS    = -Werror -Wextra -Wall -g
 LIBFT     = libft
 LIBFT_MOD = libft/Makefile
 
@@ -19,7 +27,7 @@ $(LIBFT): .FORCE $(LIBFT_MOD)
 $(LIBFT_MOD):
 	git submodule update --init
 
-%.o: %.c minishell.h
+%.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   sh_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/27 09:09:46 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/10/22 09:07:28 by rde-oliv         ###   ########.fr       */
+/*   Created: 2020/10/11 10:27:46 by rde-oliv          #+#    #+#             */
+/*   Updated: 2020/10/22 08:48:39 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-# include <unistd.h>
-# include <stddef.h>
-# include "tokens.h"
-# include "lexer.h"
-# include "libft/libft.h"
+#include "minishell.h"
 
-int		g_errno;
-int		read_cmd(void);
-int		parser(char *line);
-void	sh_error(void);
-char	*sh_strerror(int errnum);
-void	sh_free(void);
+void	sh_error(void)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(sh_strerror(g_errno), 2);
+	ft_putchar_fd('\n', 2);
+	g_errno = 0;
+	sh_free();
+}
 
-/*
-** SH errors
-*/
-# define SH_MEMERR 1
-# define SH_SYNERR 2
-
-#endif
+char	*sh_strerror(int errnum)
+{
+	if (errnum == SH_MEMERR)
+		return ("error while allocating memory.");
+	if (errnum == SH_SYNERR)
+		return ("syntax error");
+	return (NULL);
+}
