@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:50:03 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/10/22 18:17:41 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/10/23 18:03:24 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,22 @@ void	lexeme_join(char **value)
 	char	*ptr;
 	char	*new;
 
-	if (*value == NULL)
+	if ((new = ft_substr(g_lx.line + g_lx.i, 0, 1)) == NULL)
+		g_errno = SH_MEMERR;
+	if (g_lx.line[g_lx.i] == '$' && g_lx.qte)
 	{
-		if ((*value = ft_substr(g_lx.line + g_lx.i, 0, 1)) == NULL)
+		ptr = new;
+		if ((new = ft_strjoin(" ", new)) == NULL)
 			g_errno = SH_MEMERR;
+		else
+			new[0] = -1;
+		free(ptr);
 	}
+	if (*value == NULL)
+		*value = new;
 	else
 	{
 		ptr = *value;
-		new = ft_substr(g_lx.line + g_lx.i, 0, 1);
 		*value = ft_strjoin(*value, new);
 		if (new == NULL || *value == NULL)
 			g_errno = SH_MEMERR;

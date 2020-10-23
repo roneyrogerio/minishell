@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 00:36:04 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/10/23 12:34:43 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/10/23 17:51:12 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ int		lx_islexeme(void)
 	escape = 0;
 	if (g_lx.i > 0 && g_lx.line[g_lx.i - 1] == '\\')
 		escape = 1;
+	if (!g_lx.qte && g_lx.line[g_lx.i] == '\\' && g_lx.line[g_lx.i + 1] == '$')
+		g_lx.line[g_lx.i] = -1;
 	if (!g_lx.qte && !g_lx.dqte && g_lx.line[g_lx.i] == '\\' &&
 			g_lx.line[g_lx.i + 1] != -1)
 		return (0);
