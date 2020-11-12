@@ -68,8 +68,13 @@ int	syntax(void)
 	token = g_tokens;
 	while (token)
 	{
-		if ((token->name == SEMI || token->name == PIPE) &&
-				(!token->prev || token->prev->name != LITERAL))
+		if ((((token->name == SEMI ||
+				token->name == PIPE) &&
+					(!token->prev || (token->prev->name != LITERAL)))) ||
+			((token->name == LESS ||
+				token->name == GREAT ||
+				token->name == DGREAT) &&
+					(!token->next || token->next->name != LITERAL)))
 		{
 			g_errno = SH_SYNERR;
 			return (0);
