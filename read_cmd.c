@@ -70,7 +70,8 @@ int	syntax(void)
 	{
 		if ((((token->name == SEMI ||
 				token->name == PIPE) &&
-					(!token->prev || (token->prev->name != LITERAL)))) ||
+					(!token->prev || (token->prev->name != LITERAL &&
+									token->prev->name != ENV)))) ||
 			((token->name == LESS ||
 				token->name == GREAT ||
 				token->name == DGREAT) &&

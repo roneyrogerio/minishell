@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 08:46:38 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/10/21 21:33:59 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/09 11:33:15 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ void			tokens_clear(void);
 # define PIPE '|'
 # define SEMI ';'
 # define LITERAL 257
+# define ENV 258
 
 #endif

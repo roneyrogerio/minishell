@@ -22,6 +22,7 @@ typedef struct	s_lx
 	size_t	i;
 	int		qte;
 	int		dqte;
+	int		env;
 }				t_lx;
 
 t_lx			g_lx;

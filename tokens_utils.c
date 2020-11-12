@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 15:51:40 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/10/22 16:17:02 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/09 14:59:07 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	tokens_print(void)
 	{
 		ft_putchar_fd('(', 1);
 		ft_putstr_fd(token_name(tokens->name), 1);
-		if (tokens->name == LITERAL)
+		if (tokens->name == LITERAL || tokens->name == ENV)
 			ft_putstr_fd(tokens->value, 1);
 		ft_putchar_fd(')', 1);
 		tokens = tokens->next;
@@ -45,6 +45,8 @@ char	*token_name(int name)
 		return ("SEMI");
 	else if (name == LITERAL)
 		return ("LITERAL: ");
+	else if (name == ENV)
+		return ("ENV: ");
 	else
 		return ("");
 }

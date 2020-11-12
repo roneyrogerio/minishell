@@ -40,6 +40,7 @@ t_token	*lx_literal(void)
 	char	*value;
 	t_token	*token;
 
+	g_lx.env = 0;
 	value = lexeme();
 	if ((g_lx.qte || g_lx.dqte) && !g_lx.cache)
 		g_lx.cache = value;
@@ -72,6 +73,8 @@ char	*lexeme(void)
 		if (!g_lx.qte && g_lx.line[g_lx.i] == '\\' &&
 				g_lx.line[g_lx.i + 1] == '\\')
 			g_lx.line[g_lx.i + 1] = -1;
+		if (!g_lx.qte && !g_lx.dqte && g_lx.line[g_lx.i] == '=')
+			g_lx.env = 1;
 		if (g_lx.line[g_lx.i] == '\'' && lx_isqte())
 			lx_qte(g_lx.qte, &value);
 		else if (g_lx.line[g_lx.i] == '"' && lx_isqte())

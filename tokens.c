@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/18 09:25:09 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/10/22 08:56:37 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/09 21:59:19 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,24 @@
 
 t_token	*token_new(int name, char *value)
 {
-	t_token	*token;
+	t_token		*token;
+	static int	last;
 
 	if ((token = (t_token *)ft_calloc(1, sizeof(t_token))) == NULL)
 	{
 		g_errno = SH_MEMERR;
 		return (NULL);
 	}
-	token->name = name;
+	if (last != LITERAL && name == LITERAL && is_env(value) && g_lx.env)
+	{
+		token->name = ENV;
+		last = ENV;
+	}
+	else
+	{
+		token->name = name;
+		last = name;
+	}
 	token->value = value;
 	return (token);
 }

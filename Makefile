@@ -9,6 +9,7 @@ SRCS      = minishell.c \
 			lexer_qte.c \
 			tokens.c \
 			tokens_utils.c \
+			env_utils.c \
 			sh_free.c
 
 OBJS     := $(SRCS:.c=.o)
