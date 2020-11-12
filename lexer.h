@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:49:53 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/10/21 11:57:15 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/09 14:33:55 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ int				lx_isliteral(void);
 int				lx_isqte(void);
 void			lx_cachejoin(char *value);
 int				lx_islexeme();
+void			lx_qte(int qte, char **value);
+void			lx_dqte(int dqte, char **value);
 
 #endif

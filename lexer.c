@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 16:50:03 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/10/23 18:03:24 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/09 14:45:30 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,17 +73,9 @@ char	*lexeme(void)
 				g_lx.line[g_lx.i + 1] == '\\')
 			g_lx.line[g_lx.i + 1] = -1;
 		if (g_lx.line[g_lx.i] == '\'' && lx_isqte())
-		{
-			if (g_lx.qte && !value)
-				value = ft_strdup("");
-			g_lx.qte = g_lx.qte ? 0 : 1;
-		}
+			lx_qte(g_lx.qte, &value);
 		else if (g_lx.line[g_lx.i] == '"' && lx_isqte())
-		{
-			if (g_lx.dqte && !value)
-				value = ft_strdup("");
-			g_lx.dqte = g_lx.dqte ? 0 : 1;
-		}
+			lx_dqte(g_lx.dqte, &value);
 		else if (g_lx.line[g_lx.i] != -1 && lx_islexeme())
 			lexeme_join(&value);
 		g_lx.i++;

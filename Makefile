@@ -6,6 +6,7 @@ SRCS      = minishell.c \
 			read_cmd.c \
 			lexer.c \
 			lexer_utils.c \
+			lexer_qte.c \
 			tokens.c \
 			tokens_utils.c \
 			sh_free.c
