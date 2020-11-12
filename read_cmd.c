@@ -6,13 +6,12 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 19:08:37 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/10/22 18:02:51 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/11 16:05:54 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "get_next_line.h"
-#include "lexer.h"
 
 int	read_cmd(void)
 {
