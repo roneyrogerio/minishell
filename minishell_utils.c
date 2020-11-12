@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/26 08:18:06 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/11 16:04:35 by rde-oliv         ###   ########.fr       */
+/*   Created: 2020/11/08 12:49:40 by rde-oliv          #+#    #+#             */
+/*   Updated: 2020/11/08 17:22:48 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <unistd.h>
 
-int	main(void)
+void	*shelloc(int size)
 {
-	while (1)
-	{
-		if (g_errno != 0 || errno != 0)
-			sh_error();
-		if (read_cmd() == -1)
-			continue ;
-		sh_free();
-	}
-	return (0);
+	void	*ret;
+
+	if ((ret = ft_calloc(1, size)) == NULL)
+		g_errno = SH_MEMERR;
+	return (ret);
+}
+
+char	*sh_strdup(char *str)
+{
+	char	*ret;
+
+	if ((ret = ft_strdup(str)) == NULL)
+		g_errno = SH_MEMERR;
+	return (ret);
 }

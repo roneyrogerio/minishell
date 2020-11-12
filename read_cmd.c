@@ -28,7 +28,7 @@ int	read_cmd(void)
 		if ((g_lx.line = ft_strjoin(g_lx.line, "\n")) == NULL)
 			g_errno = SH_MEMERR;
 		free(ptr);
-		if ((multiline = parser(g_lx.line)) == -1 || !syntax())
+		if ((multiline = parser(g_lx.line)) < 0 || !syntax() || !ast(g_tokens))
 			return (-1);
 		free(g_lx.line);
 		g_lx.line = NULL;

@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 10:27:46 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/10/22 08:48:39 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/10 16:54:42 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 void	sh_error(void)
 {
 	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(sh_strerror(g_errno), 2);
+	if (errno != 0)
+		ft_putstr_fd(strerror(errno), 2);
+	else
+		ft_putstr_fd(sh_strerror(g_errno), 2);
 	ft_putchar_fd('\n', 2);
 	g_errno = 0;
 	sh_free();

@@ -9,6 +9,10 @@ SRCS      = minishell.c \
 			lexer_qte.c \
 			tokens.c \
 			tokens_utils.c \
+			minishell_utils.c \
+			ast.c \
+			ast_utils.c \
+			ast_clear.c \
 			env_utils.c \
 			sh_free.c
 

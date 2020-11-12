@@ -1,27 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ast_clear.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/09/26 08:18:06 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/11 16:04:35 by rde-oliv         ###   ########.fr       */
+/*   Created: 2020/11/11 12:50:36 by rde-oliv          #+#    #+#             */
+/*   Updated: 2020/11/11 16:23:15 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <unistd.h>
 
-int	main(void)
+void	ast_clear(void)
 {
-	while (1)
+	int	i;
+	int	j;
+
+	i = 0;
+	while (g_sh.ast && i < g_sh.len)
 	{
-		if (g_errno != 0 || errno != 0)
-			sh_error();
-		if (read_cmd() == -1)
-			continue ;
-		sh_free();
+		j = 0;
+		while (g_sh.ast[i].argv && g_sh.ast[i].argv[j])
+		{
+			free(g_sh.ast[i].argv[j]);
+			j++;
+		}
+		free(g_sh.ast[i].argv);
+		j = 0;
+		while (g_sh.ast[i].env && g_sh.ast[i].env[j])
+		{
+			free(g_sh.ast[i].env[j]);
+			j++;
+		}
+		free(g_sh.ast[i].env);
+		i++;
 	}
-	return (0);
+	free(g_sh.ast);
 }
