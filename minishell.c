@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 08:18:06 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/16 20:06:10 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/17 20:16:46 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	main(int argc, char **argv, char **env)
 	signal(SIGCHLD, handle_sig);
 	(void)(argc);
 	(void)(argv);
-	g_sh.env = env;
+	if ((g_sh.env = env_clone(env)) == NULL)
+		return (EXIT_FAILURE);
 	while (1)
 	{
 		if (g_errno != 0 || errno != 0)
@@ -29,5 +30,5 @@ int	main(int argc, char **argv, char **env)
 			continue ;
 		sh_free();
 	}
-	return (0);
+	return (EXIT_SUCCESS);
 }

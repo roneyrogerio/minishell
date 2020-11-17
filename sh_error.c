@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 10:27:46 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/15 12:00:43 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/17 19:55:49 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ char	*sh_strerror(int errnum)
 		return ("syntax error");
 	if (errnum == SH_PATHERR)
 		return ("error while looking for the bin path.");
+	if (errnum == SH_ENVCERR)
+		return ("error while cloning env vars.");
 	return (NULL);
 }

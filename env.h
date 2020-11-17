@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 14:40:16 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/15 11:00:17 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/17 19:59:00 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,5 +16,6 @@
 int		is_env(char *lexeme);
 char	*env_var(char *name);
 char	*env_start(char *env, char *name);
+char	**env_clone(char **env);
 
 #endif

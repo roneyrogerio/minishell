@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/27 09:09:46 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/15 16:38:43 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/17 19:54:57 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ void			handle_sig(int sig);
 # define SH_MEMERR 1
 # define SH_SYNERR 2
 # define SH_PATHERR 3
+# define SH_ENVCERR 4
 
 #endif
