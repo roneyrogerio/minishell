@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 15:29:14 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/11 13:54:54 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/13 20:08:28 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	ast_print(void)
 	{
 		j = 0;
 		ft_putstr_fd("ARGV: ", 1);
-		while (g_sh.ast[i].argv && g_sh.ast[i].argv[j])
+		while (g_sh.ast && g_sh.ast[i].argv && g_sh.ast[i].argv[j])
 		{
 			ft_putstr_fd(g_sh.ast[i].argv[j], 1);
 			ft_putstr_fd(",", 1);
@@ -86,7 +86,7 @@ void	ast_print(void)
 		}
 		ft_putstr_fd("\n", 1);
 		ast_print_env(i);
-		if (g_sh.ast[i].end)
+		if (g_sh.ast && g_sh.ast[i].end)
 			ft_putstr_fd("END\n", 1);
 		ft_putstr_fd("--------------------------------\n", 1);
 		i++;
@@ -99,7 +99,7 @@ void	ast_print_env(int i)
 
 	j = 0;
 	ft_putstr_fd("ENV: ", 1);
-	while (g_sh.ast[i].env && g_sh.ast[i].env[j])
+	while (g_sh.ast && g_sh.ast[i].env && g_sh.ast[i].env[j])
 	{
 		ft_putstr_fd(g_sh.ast[i].env[j], 1);
 		ft_putstr_fd(",", 1);
