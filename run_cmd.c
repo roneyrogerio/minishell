@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 13:00:10 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/17 11:55:52 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/17 17:16:41 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,9 @@ int		exec_fork(int i)
 {
 	if ((g_sh.ast[i].path = find_path(g_sh.ast[i].argv[0])) == NULL)
 		return (0);
-	if (g_sh.ast && g_sh.ast[i].end == 0 && i + 1 < g_sh.len)
-		pipe(g_sh.ast[i].pfd);
+	if (g_sh.ast && g_sh.ast[i].end == 0 && i + 1 < g_sh.len &&
+			pipe(g_sh.ast[i].pfd) == -1)
+		return (0);
 	if (g_sh.ast && g_sh.ast[i].path[0] && (g_sh.ast[i].pid = fork()) == 0)
 	{
 		signal(SIGINT, NULL);
