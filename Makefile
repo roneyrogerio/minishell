@@ -13,7 +13,14 @@ SRCS      = minishell.c \
 			ast.c \
 			ast_utils.c \
 			ast_clear.c \
+			env.c \
 			env_utils.c \
+			run_cmd.c \
+			run_cmd_utils.c \
+			run_error.c \
+			find_path.c \
+			handle_sig.c \
+			pids.c \
 			sh_free.c
 
 OBJS     := $(SRCS:.c=.o)

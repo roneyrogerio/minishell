@@ -34,6 +34,8 @@ void	ast_clear(void)
 			j++;
 		}
 		free(g_sh.ast[i].env);
+		if (g_sh.ast[i].path && g_sh.ast[i].path[0] != '\0')
+			free(g_sh.ast[i].path);
 		i++;
 	}
 	free(g_sh.ast);

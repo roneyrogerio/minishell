@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 10:27:46 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/10 16:54:42 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/15 12:00:43 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	sh_error(void)
 		ft_putstr_fd(sh_strerror(g_errno), 2);
 	ft_putchar_fd('\n', 2);
 	g_errno = 0;
-	sh_free();
 }
 
 char	*sh_strerror(int errnum)
@@ -30,5 +29,7 @@ char	*sh_strerror(int errnum)
 		return ("error while allocating memory.");
 	if (errnum == SH_SYNERR)
 		return ("syntax error");
+	if (errnum == SH_PATHERR)
+		return ("error while looking for the bin path.");
 	return (NULL);
 }

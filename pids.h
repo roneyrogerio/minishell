@@ -1,41 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh_free.c                                          :+:      :+:    :+:   */
+/*   pids.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/11 13:53:41 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/16 21:04:07 by rde-oliv         ###   ########.fr       */
+/*   Created: 2020/11/13 19:11:57 by rde-oliv          #+#    #+#             */
+/*   Updated: 2020/11/13 19:13:14 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef PIDS_H
+# define PIDS_H
 
-void	sh_free(void)
-{
-	kill_pids();
-	sh_free_lx();
-	sh_free_ast();
-	errno = 0;
-	g_errno = 0;
-}
+void	wait_pids(void);
+void	kill_pids(void);
 
-void	sh_free_lx(void)
-{
-	tokens_clear();
-	free(g_lx.line);
-	free(g_lx.cache);
-	g_lx.line = NULL;
-	g_tokens = NULL;
-	g_lx.cache = NULL;
-	g_lx.qte = 0;
-	g_lx.dqte = 0;
-	g_lx.env = 0;
-}
-
-void	sh_free_ast(void)
-{
-	ast_clear();
-	g_sh.ast = NULL;
-}
+#endif

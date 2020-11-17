@@ -1,41 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh_free.c                                          :+:      :+:    :+:   */
+/*   run_cmd.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/11 13:53:41 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/16 21:04:07 by rde-oliv         ###   ########.fr       */
+/*   Created: 2020/11/13 17:10:13 by rde-oliv          #+#    #+#             */
+/*   Updated: 2020/11/17 11:27:40 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef RUN_CMD_H
+# define RUN_CMD_H
 
-void	sh_free(void)
-{
-	kill_pids();
-	sh_free_lx();
-	sh_free_ast();
-	errno = 0;
-	g_errno = 0;
-}
+int		run_cmd(void);
+int		exec_fork(int i);
+void	pipeline(int i);
+void	redirection(int i);
+void	run_error(char *bin, char *code);
 
-void	sh_free_lx(void)
-{
-	tokens_clear();
-	free(g_lx.line);
-	free(g_lx.cache);
-	g_lx.line = NULL;
-	g_tokens = NULL;
-	g_lx.cache = NULL;
-	g_lx.qte = 0;
-	g_lx.dqte = 0;
-	g_lx.env = 0;
-}
-
-void	sh_free_ast(void)
-{
-	ast_clear();
-	g_sh.ast = NULL;
-}
+#endif

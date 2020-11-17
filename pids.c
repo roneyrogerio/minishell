@@ -1,41 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh_free.c                                          :+:      :+:    :+:   */
+/*   pids.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/10/11 13:53:41 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/16 21:04:07 by rde-oliv         ###   ########.fr       */
+/*   Created: 2020/11/13 18:46:08 by rde-oliv          #+#    #+#             */
+/*   Updated: 2020/11/13 20:21:09 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	sh_free(void)
+void	wait_pids(void)
 {
-	kill_pids();
-	sh_free_lx();
-	sh_free_ast();
-	errno = 0;
-	g_errno = 0;
+	int	i;
+
+	i = 0;
+	while (g_sh.ast && i < g_sh.len)
+	{
+		if (g_sh.ast && g_sh.ast[i].pid > 0)
+		{
+			waitpid(g_sh.ast[i].pid, NULL, 0);
+			if (g_sh.ast)
+				g_sh.ast[i].pid = 0;
+		}
+		i++;
+	}
 }
 
-void	sh_free_lx(void)
+void	kill_pids(void)
 {
-	tokens_clear();
-	free(g_lx.line);
-	free(g_lx.cache);
-	g_lx.line = NULL;
-	g_tokens = NULL;
-	g_lx.cache = NULL;
-	g_lx.qte = 0;
-	g_lx.dqte = 0;
-	g_lx.env = 0;
-}
+	int	i;
 
-void	sh_free_ast(void)
-{
-	ast_clear();
-	g_sh.ast = NULL;
+	i = 0;
+	while (g_sh.ast && i < g_sh.len)
+	{
+		if (g_sh.ast && g_sh.ast[i].pid > 0)
+		{
+			kill(g_sh.ast[i].pid, SIGKILL);
+			g_sh.ast[i].pid = 0;
+		}
+		i++;
+	}
 }

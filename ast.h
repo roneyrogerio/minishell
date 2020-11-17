@@ -17,8 +17,11 @@ typedef struct	s_ast
 {
 	char	**argv;
 	char	**env;
+	char	*path;
 	int		fd_in;
 	int		fd_out;
+	int		pid;
+	int		pfd[2];
 	int		end;
 }				t_ast;
 
