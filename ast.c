@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 19:07:26 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/11 15:36:38 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/16 11:46:23 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,9 @@ void	ast_redirect(t_token **tokens, int i)
 	}
 	else if ((*tokens)->name == DGREAT)
 	{
-		g_sh.ast[i].fd_out = open(file, O_CREAT | O_WRONLY,
+		g_sh.ast[i].fd_out = open(file, O_CREAT | O_WRONLY | O_APPEND,
 				S_IRUSR | S_IWUSR);
 		write(g_sh.ast[i].fd_out, "", 0);
-		g_sh.ast[i].append = 1;
 	}
 	*tokens = (*tokens)->next;
 }
