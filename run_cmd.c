@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 13:00:10 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/17 17:16:41 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/17 20:59:38 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int		exec_fork(int i)
 		signal(SIGCHLD, NULL);
 		pipeline(i);
 		redirection(i);
-		execve(g_sh.ast[i].path, g_sh.ast[i].argv, NULL);
+		execve(g_sh.ast[i].path, g_sh.ast[i].argv, g_sh.env);
 		exit(EXIT_SUCCESS);
 	}
 	else if (g_sh.ast && g_sh.ast[i].pid == -1)
