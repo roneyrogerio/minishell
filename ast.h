@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 16:42:29 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/16 17:08:24 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/19 13:34:56 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ int				ast_env_len(t_token *tokens);
 void			ast_print(void);
 void			ast_print_env(int i);
 void			ast_clear(void);
+void			ast_close_redirections(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 13:53:41 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/16 21:04:07 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/19 13:42:35 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	sh_free_lx(void)
 
 void	sh_free_ast(void)
 {
+	ast_close_redirections();
 	ast_clear();
 	g_sh.ast = NULL;
 }

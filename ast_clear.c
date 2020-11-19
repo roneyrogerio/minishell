@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 12:50:36 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/15 19:52:01 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/19 13:45:31 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,19 @@ void	ast_clear(void)
 		i++;
 	}
 	free(g_sh.ast);
+}
+
+void	ast_close_redirections(void)
+{
+	int	i;
+
+	i = 0;
+	while (g_sh.ast && i < g_sh.len)
+	{
+		if (g_sh.ast && g_sh.ast[i].fd_in)
+			close(g_sh.ast[i].fd_in);
+		if (g_sh.ast && g_sh.ast[i].fd_out)
+			close(g_sh.ast[i].fd_out);
+		i++;
+	}
 }
