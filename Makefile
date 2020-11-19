@@ -16,7 +16,6 @@ SRCS      = minishell.c \
 			env.c \
 			env_utils.c \
 			run_cmd.c \
-			run_cmd_utils.c \
 			run_error.c \
 			find_path.c \
 			handle_sig.c \
