@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 15:07:09 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/20 19:12:37 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/20 20:20:08 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*env_expand_value(int i, int j, int k)
 	char	*env;
 
 	if (g_sh.ast[i].argv[j][k] != '?')
-		env = env_var(&g_sh.ast[i].argv[j][k + 1], env_name_len(i, j, k + 1));
+		env = env_var(&g_sh.ast[i].argv[j][k], env_name_len(i, j, k));
 	else
 	{
 		if ((env = ft_itoa(g_sh.status)) == NULL)
