@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 13:00:10 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/19 13:37:37 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/20 11:42:48 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		run_cmd(void)
 	{
 		if (g_sh.ast && g_sh.ast[i].argv)
 		{
-			if (!exec_fork(i))
+			if (!env_expand_argv(i) || !exec_fork(i))
 				return (-1);
 		}
 		if (g_sh.ast && (g_sh.ast[i].end || i == g_sh.len - 1))

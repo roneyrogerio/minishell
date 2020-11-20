@@ -18,6 +18,8 @@ SRCS      = minishell.c \
 			run_cmd.c \
 			run_error.c \
 			find_path.c \
+			env_expand.c \
+			env_expand_utils.c \
 			handle_sig.c \
 			pids.c \
 			sh_free.c

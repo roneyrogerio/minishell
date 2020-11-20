@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/27 09:09:46 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/19 12:34:16 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/20 00:29:34 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "ast.h"
 # include "env.h"
 # include "run_cmd.h"
+# include "env_expand.h"
 # include "find_path.h"
 # include "pids.h"
 # include "libft/libft.h"
