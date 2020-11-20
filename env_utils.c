@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 13:43:26 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/19 20:43:36 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/19 22:00:08 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,22 @@
 
 int		is_env(char *lexeme)
 {
+	int	equal;
 	int	i;
 
+	equal = 0;
 	i = 0;
 	while (lexeme[i])
 	{
-		if (lexeme[i] == '=' && i)
-			return (1);
+		if (!(ft_isalpha(lexeme[i]) || lexeme[i] == '='))
+			return (0);
+		else if (lexeme[i] == '=' && i)
+			equal++;
 		i++;
 	}
-	return (0);
+	if (!equal)
+		return (0);
+	return (1);
 }
 
 char	*env_start(char *env, char *name, int len)
