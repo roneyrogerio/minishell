@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 10:27:46 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/19 12:33:21 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/20 19:11:30 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	sh_error(void)
 	if (errno != 0)
 		ft_putstr_fd(strerror(errno), 2);
 	else
+	{
 		ft_putstr_fd(sh_strerror(g_errno), 2);
+		g_sh.status = 2;
+	}
 	ft_putchar_fd('\n', 2);
 	g_errno = 0;
 }

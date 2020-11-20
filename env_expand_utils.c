@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 15:57:04 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/20 16:09:57 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/20 17:45:52 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int		env_name_len(int i, int j, int k)
 	len = 0;
 	if (g_sh.ast[i].argv[j][k] == '{' && (++k) && (++len))
 		braces = 1;
+	if (g_sh.ast[i].argv[j][k] == '?')
+		return (1);
 	while (g_sh.ast[i].argv[j][k])
 	{
 		if (braces && g_sh.ast[i].argv[j][k] == '}' && (++len))

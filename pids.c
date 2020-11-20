@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 18:46:08 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/13 20:21:09 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/20 19:13:01 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	wait_pids(void)
 {
+	int	status;
 	int	i;
 
 	i = 0;
@@ -21,7 +22,10 @@ void	wait_pids(void)
 	{
 		if (g_sh.ast && g_sh.ast[i].pid > 0)
 		{
-			waitpid(g_sh.ast[i].pid, NULL, 0);
+			if (waitpid(g_sh.ast[i].pid, &status, 0) != -1)
+			{
+				g_sh.status = WEXITSTATUS(status);
+			}
 			if (g_sh.ast)
 				g_sh.ast[i].pid = 0;
 		}

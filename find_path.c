@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 16:29:48 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/19 20:56:14 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/20 19:36:12 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*find_path(char *bin)
 	else if (bin && !(bin[0] == '.' && bin[1] == '\0'))
 	{
 		path = sys_path(bin);
-		if (path == NULL)
+		if (path == NULL && (g_sh.status = 127))
 		{
 			run_error(bin, "command not found");
 			return ("");
@@ -39,6 +39,7 @@ char	*absolute_path(char *bin)
 
 	if (stat(bin, &sb) == -1)
 	{
+		g_sh.status = 127;
 		run_error(bin, strerror(errno));
 		errno = 0;
 		return (NULL);
@@ -46,6 +47,7 @@ char	*absolute_path(char *bin)
 	if (S_ISDIR(sb.st_mode))
 	{
 		run_error(bin, "Is a directory");
+		g_sh.status = 126;
 		return (NULL);
 	}
 	return (sh_strdup(bin));
@@ -66,16 +68,16 @@ char	*relative_path(char *bin)
 		path = ft_strjoin(getcwd(buf, 1000), path);
 		free(ptr);
 	}
-	if (path != NULL && stat(path, &sb) == -1)
+	if (path != NULL && stat(path, &sb) == -1 && (g_sh.status = 127))
 	{
 		free(path);
 		run_error(bin, strerror(errno));
 		errno = 0;
 		return (NULL);
 	}
-	if (path != NULL && S_ISDIR(sb.st_mode))
+	if (path != NULL && S_ISDIR(sb.st_mode) && (g_sh.status = 126))
 		return (norminette_does_not_make_sense(bin, path));
-	if (path == NULL)
+	if (path == NULL && (g_sh.status = 2))
 		g_errno = SH_PATHERR;
 	return (path);
 }

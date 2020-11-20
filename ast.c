@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 19:07:26 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/16 11:46:23 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/20 20:06:13 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		ast(t_token *tokens)
 			(!tokens->prev || tokens->prev->name != ENV))
 			i++;
 	}
-	if (g_errno != 0 || errno != 0)
+	if ((g_errno != 0 || errno != 0) && (g_sh.status = 1))
 		return (0);
 	return (1);
 }

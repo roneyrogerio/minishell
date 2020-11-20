@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 15:07:09 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/20 16:13:55 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/20 19:12:37 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int		env_expand_real(int i, int j, int k)
 	int		right_len;
 	char	*new;
 
-	env = env_var(&g_sh.ast[i].argv[j][k + 1], env_name_len(i, j, k + 1));
+	if ((env = env_expand_value(i, j, k + 1)) == NULL)
+		return (0);
 	left_len = k;
 	middle_len = env_middle_len(env);
 	right_len = ft_strlen(&g_sh.ast[i].argv[j][k + 1 +
@@ -67,9 +68,28 @@ int		env_expand_real(int i, int j, int k)
 	ft_memcpy(new + left_len + middle_len,
 			&g_sh.ast[i].argv[j][k + 1 + env_name_len(i, j, k + 1)],
 			right_len);
+	if (g_sh.ast[i].argv[j][k + 1] == '?')
+		free(env);
 	free(g_sh.ast[i].argv[j]);
 	g_sh.ast[i].argv[j] = new;
 	return (1);
+}
+
+char	*env_expand_value(int i, int j, int k)
+{
+	char	*env;
+
+	if (g_sh.ast[i].argv[j][k] != '?')
+		env = env_var(&g_sh.ast[i].argv[j][k + 1], env_name_len(i, j, k + 1));
+	else
+	{
+		if ((env = ft_itoa(g_sh.status)) == NULL)
+		{
+			g_errno = SH_MEMERR;
+			return (NULL);
+		}
+	}
+	return (env);
 }
 
 int		argv_rm_empty(int i, int j)
