@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 13:43:26 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/19 22:29:19 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/20 16:33:05 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ int		is_env(char *lexeme)
 
 char	*env_start(char *env, char *name, int len)
 {
+	if (len > 2 && name && name[0] == '{' && name[len - 1] == '}')
+	{
+		name = &name[1];
+		len -= 2;
+	}
 	if (ft_strncmp(env, name, len) == 0 && env[len] == '=')
 		return (env + len + 1);
 	return (NULL);
