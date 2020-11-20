@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 16:29:48 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/15 22:12:38 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/19 20:56:14 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ char	*sys_path(char *bin)
 	int			i;
 	struct stat	sb;
 
-	paths = ft_split(env_var("PATH"), ':');
+	paths = ft_split(env_var("PATH", 4), ':');
 	bin = ft_strjoin("/", bin);
 	i = 0;
 	while ((path = NULL) == NULL && paths != NULL && bin != NULL && paths[i])
