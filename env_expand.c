@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/19 15:07:09 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/20 20:51:07 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/20 21:28:16 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ int		env_expand_argv(int i)
 				continue ;
 			if (k && g_sh.ast[i].argv[j][k - 1] == -1 && (++k))
 				env_expand_literal(i, j, k - 1);
-			else if ((env_name_len(i, j, k + 1) &&
-						!env_expand_real(i, j, k)) || !(++k))
+			else if (env_name_len(i, j, k + 1) && !env_expand_real(i, j, k))
 				return (0);
+			else if (!env_name_len(i, j, k + 1))
+				k++;
 			if (argv_rm_empty(i, j))
 				k = 0;
 		}
