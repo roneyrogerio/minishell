@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/27 09:09:46 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/20 19:10:53 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/21 00:53:44 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void			tokens_print(void);
 char			*token_name(int name);
 void			*shelloc(int size);
 char			*sh_strdup(char *str);
+char			*sh_name(char *path);
 void			sh_free(void);
 void			sh_free_lx(void);
 void			sh_free_ast(void);
