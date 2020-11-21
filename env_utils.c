@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 13:43:26 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/20 16:33:05 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/21 17:30:40 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,6 @@ char	**env_clone(char **env)
 		g_errno = SH_ENVCERR;
 		sh_error();
 	}
+	new[len] = NULL;
 	return (new);
 }
