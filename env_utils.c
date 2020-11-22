@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 13:43:26 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/21 23:10:02 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/22 14:55:53 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_env_lst	*env_clone(char **env)
 
 	lst = NULL;
 	i = 0;
-	while (env[i])
+	while (env && env[i])
 	{
 		if ((content = malloc(sizeof(t_env))) == NULL ||
 			(item = ft_lstnew(content)) == NULL ||
