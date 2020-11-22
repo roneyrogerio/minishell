@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/27 09:09:46 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/22 19:15:45 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/22 20:42:53 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # include "env_join.h"
 # include "find_path.h"
 # include "pids.h"
+# include "builtins.h"
 # include "libft/libft.h"
 
 typedef struct	s_sh
@@ -65,5 +66,6 @@ void			sh_exit(int msg);
 # define SH_SYNERR 2
 # define SH_PATHERR 3
 # define SH_ENVCERR 4
+# define SH_MANYARG 5
 
 #endif

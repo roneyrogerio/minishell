@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 10:27:46 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/20 19:11:30 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/22 20:40:54 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,7 @@ char	*sh_strerror(int errnum)
 		return ("error while looking for the bin path.");
 	if (errnum == SH_ENVCERR)
 		return ("error while cloning env vars.");
+	if (errnum == SH_MANYARG)
+		return ("too many arguments.");
 	return (NULL);
 }
