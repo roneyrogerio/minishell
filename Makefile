@@ -25,7 +25,8 @@ SRCS      = minishell.c \
 			env_join.c \
 			handle_sig.c \
 			pids.c \
-			sh_free.c
+			sh_free.c \
+			sh_exit.c
 
 OBJS     := $(SRCS:.c=.o)
 HEADER    = minishell.h

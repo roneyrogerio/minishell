@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 19:08:37 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/11 16:05:54 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/22 01:20:00 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ int	read_cmd(void)
 	while (multiline)
 	{
 		g_lx.i = 0;
-		get_next_line(0, &g_lx.line);
+		if (get_next_line(0, &g_lx.line) == -1)
+			sh_exit();
 		ptr = g_lx.line;
 		if ((g_lx.line = ft_strjoin(g_lx.line, "\n")) == NULL)
 			g_errno = SH_MEMERR;
