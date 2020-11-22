@@ -27,7 +27,9 @@ void	handle_sig(int sig)
 	}
 	else if (sig == SIGQUIT && (g_sh.status = 131))
 	{
-		ft_putstr_fd("Quit\n", 1);
+		if (g_sh.ast)
+			ft_putstr_fd("Quit", 1);
+		ft_putchar_fd('\n', 1);
 		if (!g_sh.ast)
 			ft_putstr_fd("$ ", 1);
 		kill_pids(SIGQUIT);
