@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/27 09:09:46 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/22 14:17:48 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/22 19:15:45 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void			sh_free(void);
 void			sh_free_lx(void);
 void			sh_free_ast(void);
 void			handle_sig(int sig);
-int				is_exit(int i);
-int				is_exitp(int i);
 void			sh_exit(int msg);
 
 /*

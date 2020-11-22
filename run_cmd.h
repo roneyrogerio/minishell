@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 17:10:13 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/22 15:57:13 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/22 19:12:32 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RUN_CMD_H
 
 int		run_cmd(void);
+int		run_cmd_exec_argv(int i);
 int		exec_fork(int i);
 int		exec_fork_prepare(int i);
 void	pipeline(int i);

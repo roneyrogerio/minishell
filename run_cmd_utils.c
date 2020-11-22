@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sh_exit.c                                          :+:      :+:    :+:   */
+/*   run_cmd_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/11/22 01:26:05 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/22 19:15:30 by rde-oliv         ###   ########.fr       */
+/*   Created: 2020/11/22 18:56:31 by rde-oliv          #+#    #+#             */
+/*   Updated: 2020/11/22 19:22:29 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	sh_exit(int msg)
+int		run_cmd_exec_argv(int i)
 {
-	env_lst_clear();
-	sh_free();
-	if (msg)
-		ft_putstr_fd("exit\n", 1);
-	exit(EXIT_SUCCESS);
+	if (!env_expand_argv(i))
+		return (0);
+	else if (ft_strcmp(g_sh.ast[i].argv[0], "exit") == 0 &&
+			(!i || (i && g_sh.ast[i - 1].end == 1)) &&
+			(g_sh.ast[i].end == 1 || i == g_sh.len - 1))
+		sh_exit(0);
+	else if (ft_strcmp(g_sh.ast[i].argv[0], "exit") != 0 && !exec_fork(i))
+		return (0);
+	return (1);
 }
