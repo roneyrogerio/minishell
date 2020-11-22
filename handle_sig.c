@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 18:23:19 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/22 11:11:06 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/22 11:26:02 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	handle_sig(int sig)
 {
-	if (sig == 2)
+	if (sig == SIGINT && (g_sh.status = 130))
 	{
 		ft_putchar_fd('\n', 1);
 		if (!g_sh.ast)
 			ft_putstr_fd("$ ", 1);
 		sh_free();
 	}
-	else if (sig == 17)
+	else if (sig == SIGCHLD)
 	{
 		wait(NULL);
 	}
-	else if (sig == SIGQUIT)
+	else if (sig == SIGQUIT && (g_sh.status = 131))
 	{
 		ft_putstr_fd("Quit\n", 1);
 		if (!g_sh.ast)
