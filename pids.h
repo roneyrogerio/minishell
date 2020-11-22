@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 19:11:57 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/13 19:13:14 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/22 10:50:13 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 # define PIDS_H
 
 void	wait_pids(void);
-void	kill_pids(void);
+void	kill_pids(int signal);
 
 #endif

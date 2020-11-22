@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 18:46:08 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/20 19:13:01 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/22 10:51:07 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	wait_pids(void)
 	}
 }
 
-void	kill_pids(void)
+void	kill_pids(int signal)
 {
 	int	i;
 
@@ -42,7 +42,7 @@ void	kill_pids(void)
 	{
 		if (g_sh.ast && g_sh.ast[i].pid > 0)
 		{
-			kill(g_sh.ast[i].pid, SIGKILL);
+			kill(g_sh.ast[i].pid, signal);
 			g_sh.ast[i].pid = 0;
 		}
 		i++;

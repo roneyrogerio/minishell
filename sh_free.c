@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 13:53:41 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/19 13:42:35 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/22 10:50:10 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	sh_free(void)
 {
-	kill_pids();
+	kill_pids(SIGKILL);
 	sh_free_lx();
 	sh_free_ast();
 	errno = 0;
