@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/26 08:18:06 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/21 00:54:35 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/22 10:59:47 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	main(int argc, char **argv, char **env)
 {
 	signal(SIGINT, handle_sig);
 	signal(SIGCHLD, handle_sig);
+	signal(SIGQUIT, handle_sig);
 	(void)(argc);
 	g_sh.name = sh_name(argv[0]);
 	if ((g_sh.env = env_clone(env)) == NULL)
