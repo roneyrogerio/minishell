@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 01:26:05 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/22 01:32:01 by marvin           ###   ########.fr       */
+/*   Updated: 2020/11/22 12:49:31 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	sh_exit(void)
 {
+	env_lst_clear();
 	sh_free();
 	ft_putstr_fd("exit\n", 1);
 	exit(EXIT_SUCCESS);
