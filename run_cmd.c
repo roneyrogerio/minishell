@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 13:00:10 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/22 14:57:18 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/22 16:05:00 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		run_cmd(void)
 
 int		exec_fork(int i)
 {
-	if ((g_sh.ast[i].path = find_path(g_sh.ast[i].argv[0])) == NULL)
+	if (!exec_fork_prepare(i))
 		return (0);
 	if (g_sh.ast && g_sh.ast[i].end == 0 && i + 1 < g_sh.len &&
 			pipe(g_sh.ast[i].pfd) == -1)
@@ -52,7 +52,7 @@ int		exec_fork(int i)
 		signal(SIGQUIT, NULL);
 		pipeline(i);
 		redirection(i);
-		execve(g_sh.ast[i].path, g_sh.ast[i].argv, NULL);
+		execve(g_sh.ast[i].path, g_sh.ast[i].argv, g_sh.ast[i].g_env);
 		exit(EXIT_SUCCESS);
 	}
 	else if (g_sh.ast && g_sh.ast[i].pid == -1)
@@ -62,6 +62,15 @@ int		exec_fork(int i)
 		close(g_sh.ast[i - 1].pfd[0]);
 		close(g_sh.ast[i - 1].pfd[1]);
 	}
+	return (1);
+}
+
+int		exec_fork_prepare(int i)
+{
+	if ((g_sh.ast[i].path = find_path(g_sh.ast[i].argv[0])) == NULL)
+		return (0);
+	if ((g_sh.ast[i].g_env = env_get()) == NULL)
+		return (0);
 	return (1);
 }
 

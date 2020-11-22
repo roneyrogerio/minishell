@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/05 16:42:29 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/19 13:34:56 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/22 15:52:06 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ typedef struct	s_ast
 {
 	char	**argv;
 	char	**env;
+	char	**g_env;
 	char	*path;
 	int		fd_in;
 	int		fd_out;

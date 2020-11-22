@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 13:43:26 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/22 14:55:53 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/22 15:55:17 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,20 @@ t_env_lst	*env_clone(char **env)
 		i++;
 	}
 	return (lst);
+}
+
+int			env_len(void)
+{
+	t_env_lst	*env;
+	int			len;
+
+	len = 0;
+	env = g_sh.env;
+	while (env)
+	{
+		if (env->content->exp == 1)
+			len++;
+		env = env->next;
+	}
+	return (len);
 }
