@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/15 10:49:53 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/19 20:43:51 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/21 23:03:54 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 
 char	*env_var(char *name, int len)
 {
-	char	*var;
-	int		i;
+	t_env_lst	*env;
+	char		*var;
 
+	env = g_sh.env;
 	var = NULL;
-	i = 0;
-	while (g_sh.env[i])
+	while (env)
 	{
-		var = env_start(g_sh.env[i], name, len);
+		var = env_start(env->content->value, name, len);
 		if (var != NULL)
 			break ;
-		i++;
+		env = env->next;
 	}
 	return (var);
 }

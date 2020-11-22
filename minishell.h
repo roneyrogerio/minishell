@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/27 09:09:46 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/21 16:51:36 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/21 23:02:59 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@
 
 typedef struct	s_sh
 {
-	t_ast	*ast;
-	int		len;
-	char	**env;
-	char	*name;
-	int		status;
+	t_ast		*ast;
+	int			len;
+	t_env_lst	*env;
+	char		*name;
+	int			status;
 }				t_sh;
 
 t_sh			g_sh;

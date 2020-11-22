@@ -6,13 +6,13 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 13:43:26 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/21 17:30:40 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/21 23:10:02 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int		is_env(char *lexeme)
+int			is_env(char *lexeme)
 {
 	int	equal;
 	int	i;
@@ -32,7 +32,7 @@ int		is_env(char *lexeme)
 	return (1);
 }
 
-char	*env_start(char *env, char *name, int len)
+char		*env_start(char *env, char *name, int len)
 {
 	if (len > 2 && name && name[0] == '{' && name[len - 1] == '}')
 	{
@@ -44,29 +44,31 @@ char	*env_start(char *env, char *name, int len)
 	return (NULL);
 }
 
-char	**env_clone(char **env)
+t_env_lst	*env_clone(char **env)
 {
-	char	**new;
-	int		len;
-	int		i;
+	t_env_lst	*lst;
+	t_env_lst	*item;
+	t_env		*content;
+	int			i;
 
-	len = ft_splitlen(env);
-	new = (char **)malloc((len + 1) * sizeof(char *));
+	lst = NULL;
 	i = 0;
-	while (env[i] && new)
+	while (env[i])
 	{
-		if ((new[i] = sh_strdup(env[i])) == NULL)
+		if ((content = malloc(sizeof(t_env))) == NULL ||
+			(item = ft_lstnew(content)) == NULL ||
+			(content->value = ft_strdup(env[i])) == NULL)
 		{
-			ft_splitclear(new);
-			break ;
+			free(content);
+			free(item);
+			ft_lstclear((void **)&lst, &free);
+			g_errno = SH_ENVCERR;
+			sh_error();
+			return (NULL);
 		}
+		content->exp = 1;
+		ft_lstadd_back((void **)&lst, item);
 		i++;
 	}
-	if (new == NULL)
-	{
-		g_errno = SH_ENVCERR;
-		sh_error();
-	}
-	new[len] = NULL;
-	return (new);
+	return (lst);
 }

@@ -40,7 +40,7 @@ $(NAME): $(LIBFT) $(OBJS)
 
 .FORCE:
 $(LIBFT): .FORCE $(LIBFT_MOD)
-	make -C $(LIBFT)
+	make bonus -C $(LIBFT)
 
 $(LIBFT_MOD):
 	git submodule update --init
