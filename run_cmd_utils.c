@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 18:56:31 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/23 10:48:13 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/23 12:17:05 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int		run_cmd_exec_argv(int i)
 		return (0);
 	else if (ft_strcmp(g_sh.ast[i].argv[0], "exit") == 0 &&
 			(!i || (i && g_sh.ast[i - 1].end == 1)) &&
-			(g_sh.ast[i].end == 1 || i == g_sh.len - 1))
-		sh_exit(0);
+			(g_sh.ast[i].end == 1 || i == g_sh.len - 1) && !sh_exit_cmd(i))
+		return (0);
 	else if (ft_strcmp(g_sh.ast[i].argv[0], "cd") == 0 &&
 			(!i || (i && g_sh.ast[i - 1].end == 1)) &&
 			(g_sh.ast[i].end == 1 || i == g_sh.len - 1) && !int_cd(i))

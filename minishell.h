@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/27 09:09:46 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/22 20:42:53 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/23 12:20:48 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void			sh_free(void);
 void			sh_free_lx(void);
 void			sh_free_ast(void);
 void			handle_sig(int sig);
-void			sh_exit(int msg);
+void			sh_exit(int status);
+int				sh_exit_cmd(int i);
 
 /*
 ** SH errors
@@ -68,5 +69,6 @@ void			sh_exit(int msg);
 # define SH_PATHERR 3
 # define SH_ENVCERR 4
 # define SH_MANYARG 5
+# define SH_NOTNUM 6
 
 #endif

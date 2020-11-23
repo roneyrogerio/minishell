@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/11 10:27:46 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/22 20:40:54 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/23 11:52:27 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ char	*sh_strerror(int errnum)
 		return ("error while cloning env vars.");
 	if (errnum == SH_MANYARG)
 		return ("too many arguments.");
+	if (errnum == SH_NOTNUM)
+		return ("numeric argument required.");
 	return (NULL);
 }
