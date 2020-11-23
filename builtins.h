@@ -13,6 +13,8 @@
 #ifndef BUILTINS_H
 # define BUILTINS_H
 
+int		builtins(int i);
+int		int_echo(int i);
 int		int_cd(int i);
 
 #endif
