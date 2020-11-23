@@ -27,6 +27,7 @@ SRCS      = minishell.c \
 			handle_sig.c \
 			pids.c \
 			builtins.c \
+			builtins_utils.c \
 			sh_free.c \
 			sh_exit.c
 
