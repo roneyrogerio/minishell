@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 20:26:20 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/22 22:54:14 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/22 23:21:20 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int		builtins(int i)
 	if (ft_strcmp(g_sh.ast[i].argv[0], "echo") == 0 && int_echo(i))
 		return (1);
 	else if (ft_strcmp(g_sh.ast[i].argv[0], "pwd") == 0 && int_pwd())
+		return (1);
+	else if (ft_strcmp(g_sh.ast[i].argv[0], "env") == 0 && int_env())
 		return (1);
 	return (0);
 }
@@ -52,6 +54,23 @@ int		int_pwd(void)
 	if (getcwd(buf, PATH_MAX) != NULL)
 		ft_putstr_fd(buf, 1);
 	ft_putchar_fd('\n', 1);
+	return (1);
+}
+
+int		int_env(void)
+{
+	t_env_lst	*env;
+
+	env = g_sh.env;
+	while (env)
+	{
+		if (env->content->exp == 1)
+		{
+			ft_putstr_fd(env->content->value, 1);
+			ft_putchar_fd('\n', 1);
+		}
+		env = env->next;
+	}
 	return (1);
 }
 
