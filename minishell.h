@@ -19,6 +19,7 @@
 # include <errno.h>
 # include <sys/wait.h>
 # include <sys/stat.h>
+# include <limits.h>
 # include "tokens.h"
 # include "lexer.h"
 # include "ast.h"

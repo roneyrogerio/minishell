@@ -55,17 +55,17 @@ char	*absolute_path(char *bin)
 
 char	*relative_path(char *bin)
 {
-	char		buf[1000];
+	char		buf[PATH_MAX];
 	char		*path;
 	char		*ptr;
 	struct stat	sb;
 
 	if (bin && bin[0] == '.' && bin[1] == '/')
-		path = ft_strjoin(getcwd(buf, 1000), &bin[1]);
+		path = ft_strjoin(getcwd(buf, PATH_MAX), &bin[1]);
 	else if ((path = ft_strjoin("/", bin)) != NULL)
 	{
 		ptr = path;
-		path = ft_strjoin(getcwd(buf, 1000), path);
+		path = ft_strjoin(getcwd(buf, PATH_MAX), path);
 		free(ptr);
 	}
 	if (path != NULL && stat(path, &sb) == -1 && (g_sh.status = 127))
