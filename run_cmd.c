@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 13:00:10 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/22 21:09:23 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/23 01:55:14 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,13 @@ int		exec_fork(int i)
 
 int		exec_fork_prepare(int i)
 {
-	if ((g_sh.ast[i].path = find_path(g_sh.ast[i].argv[0])) == NULL)
+	if ((ft_strcmp(g_sh.ast[i].argv[0], "echo") == 0 ||
+		ft_strcmp(g_sh.ast[i].argv[0], "pwd") == 0 ||
+		ft_strcmp(g_sh.ast[i].argv[0], "env") == 0) &&
+		(g_sh.ast[i].path = sh_strdup(" ")) == NULL)
+		return (0);
+	else if (g_sh.ast[i].path == NULL &&
+			(g_sh.ast[i].path = find_path(g_sh.ast[i].argv[0])) == NULL)
 		return (0);
 	if ((g_sh.ast[i].g_env = env_get()) == NULL)
 		return (0);
