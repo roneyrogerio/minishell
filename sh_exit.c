@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 01:26:05 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/23 12:21:22 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/23 12:32:05 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ int		sh_exit_cmd(int i)
 		g_errno = SH_MANYARG;
 		return (0);
 	}
-	status = ft_atoi(status_ptr);
+	if (status_ptr)
+		status = ft_atoi(status_ptr);
+	else
+		status = 0;
 	sh_exit(status);
 	return (status);
 }
