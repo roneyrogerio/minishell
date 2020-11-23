@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 20:31:02 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/22 20:32:17 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/22 22:51:01 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 int		builtins(int i);
 int		int_echo(int i);
+int		int_pwd(void);
 int		int_cd(int i);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/22 20:26:20 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/22 21:39:26 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/22 22:54:14 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int		builtins(int i)
 {
 	if (ft_strcmp(g_sh.ast[i].argv[0], "echo") == 0 && int_echo(i))
+		return (1);
+	else if (ft_strcmp(g_sh.ast[i].argv[0], "pwd") == 0 && int_pwd())
 		return (1);
 	return (0);
 }
@@ -40,6 +42,16 @@ int		int_echo(int i)
 	}
 	if (newline)
 		ft_putchar_fd('\n', 1);
+	return (1);
+}
+
+int		int_pwd(void)
+{
+	char	buf[PATH_MAX];
+
+	if (getcwd(buf, PATH_MAX) != NULL)
+		ft_putstr_fd(buf, 1);
+	ft_putchar_fd('\n', 1);
 	return (1);
 }
 
