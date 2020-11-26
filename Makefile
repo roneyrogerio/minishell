@@ -35,7 +35,6 @@ OBJS     := $(SRCS:.c=.o)
 HEADER    = minishell.h
 CFLAGS    = -Werror -Wextra -Wall -g
 LIBFT     = libft
-LIBFT_MOD = libft/Makefile
 
 all: $(NAME)
 
@@ -43,11 +42,8 @@ $(NAME): $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT)/$(LIBFT).a -o $(NAME)
 
 .FORCE:
-$(LIBFT): .FORCE $(LIBFT_MOD)
+$(LIBFT): .FORCE
 	make bonus -C $(LIBFT)
-
-$(LIBFT_MOD):
-	git submodule update --init
 
 %.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
