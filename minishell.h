@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/09/27 09:09:46 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/23 12:20:48 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/26 01:50:38 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct	s_sh
 	t_env_lst	*env;
 	char		*name;
 	int			status;
+	int			after_cmd;
 }				t_sh;
 
 t_sh			g_sh;
