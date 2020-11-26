@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/23 00:02:04 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/23 11:03:48 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/26 12:41:10 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,24 @@
 
 int		int_export(int i)
 {
-	int	j;
+	int		j;
+	int		name_len;
+	char	*find;
 
 	j = 1;
 	while (g_sh.ast[i].argv[j])
 	{
-		set_env_exp(g_sh.ast[i].argv[j]);
+		if (strchr(g_sh.ast[i].argv[j], '=') == NULL)
+			set_env_exp(g_sh.ast[i].argv[j]);
+		else
+		{
+			name_len = env_join_name_len(g_sh.ast[i].argv[j]);
+			find = env_var(g_sh.ast[i].argv[j], name_len);
+			if (find == NULL && !env_join_new(g_sh.ast[i].argv[j], 1))
+				return (0);
+			else if (!env_join_same(g_sh.ast[i].argv[j], 1))
+				return (0);
+		}
 		j++;
 	}
 	return (1);
