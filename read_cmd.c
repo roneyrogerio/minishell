@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/17 19:08:37 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/23 12:11:29 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/26 01:53:03 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	read_cmd(void)
 
 	multiline = 1;
 	ft_putstr_fd("$ ", 1);
+	g_sh.after_cmd = 0;
 	while (multiline)
 	{
 		g_lx.i = 0;
@@ -36,6 +37,7 @@ int	read_cmd(void)
 		if (multiline)
 			ft_putstr_fd("> ", 1);
 	}
+	g_sh.after_cmd = 1;
 	return (1);
 }
 
