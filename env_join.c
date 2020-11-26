@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/21 14:48:27 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/11/26 11:57:47 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/26 12:22:00 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		env_join(int i)
 		find = env_var(g_sh.ast[i].env[j], name_len);
 		if (find == NULL && !env_join_new(g_sh.ast[i].env[j], 0))
 			return (0);
-		else if (!env_join_same(i, j))
+		else if (!env_join_same(g_sh.ast[i].env[j], -1))
 			return (0);
 		j++;
 	}
@@ -52,25 +52,27 @@ int		env_join_new(char *env, int exp)
 	return (1);
 }
 
-int		env_join_same(int i, int j)
+int		env_join_same(char *env, int exp)
 {
-	t_env_lst	*env;
+	t_env_lst	*envs;
 	char		*new;
 	int			len;
 
-	env = g_sh.env;
-	len = env_join_name_len(g_sh.ast[i].env[j]);
-	while (env)
+	envs = g_sh.env;
+	len = env_join_name_len(env);
+	while (envs)
 	{
-		if (env_start(env->content->value, g_sh.ast[i].env[j], len) != NULL)
+		if (env_start(envs->content->value, env, len) != NULL)
 		{
-			if ((new = sh_strdup(g_sh.ast[i].env[j])) == NULL)
+			if ((new = sh_strdup(env)) == NULL)
 				return (0);
-			free(env->content->value);
-			env->content->value = new;
+			free(envs->content->value);
+			envs->content->value = new;
+			if (exp >= 0)
+				envs->content->exp = exp;
 			break ;
 		}
-		env = env->next;
+		envs = envs->next;
 	}
 	return (1);
 }
