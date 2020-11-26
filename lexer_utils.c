@@ -6,7 +6,7 @@
 /*   By: rde-oliv <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/19 00:36:04 by rde-oliv          #+#    #+#             */
-/*   Updated: 2020/10/23 17:51:12 by rde-oliv         ###   ########.fr       */
+/*   Updated: 2020/11/26 01:33:15 by rde-oliv         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		lx_isqte(void)
 	escape = 0;
 	if (g_lx.i > 0 && g_lx.line[g_lx.i - 1] == '\\')
 		escape = 1;
-	if (g_lx.line[g_lx.i] == '\'' && !escape && !g_lx.dqte)
+	if (g_lx.line[g_lx.i] == '\'' && !g_lx.dqte)
 		return (1);
 	else if (g_lx.line[g_lx.i] == '"' && !escape && !g_lx.qte)
 		return (1);
@@ -92,7 +92,7 @@ int		lx_islexeme(void)
 			g_lx.line[g_lx.i + 1] == '\n')
 		return (0);
 	else if (!g_lx.qte && g_lx.dqte && g_lx.line[g_lx.i] == '\\' &&
-			(g_lx.line[g_lx.i + 1] == '\'' || g_lx.line[g_lx.i + 1] == '"'))
+			g_lx.line[g_lx.i + 1] == '"')
 		return (0);
 	else if (!g_lx.qte && escape && g_lx.line[g_lx.i] == '\n')
 		return (0);
